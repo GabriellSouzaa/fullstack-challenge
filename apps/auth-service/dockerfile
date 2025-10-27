@@ -1,0 +1,28 @@
+FROM node:22-alpine
+
+# Diretório de trabalho
+WORKDIR /usr/src/app
+
+# Copia arquivos principais da raiz do monorepo
+COPY turbo.json package*.json ./
+
+# Copia apps e pacotes
+COPY apps ./apps
+COPY packages ./packages
+
+# Instala dependências do monorepo
+RUN npm install
+
+# Build do serviço específico usando Turbo
+RUN npx turbo run build --filter=auth-service
+
+# Define diretório do serviço
+WORKDIR /usr/src/app/apps/auth-service
+
+# Expõe a porta
+EXPOSE 3001
+
+# Comando final: roda migrations e inicia o NestJS
+CMD sh -c "\
+  npx typeorm-ts-node-esm migration:run -d dist/database/data-source.js && \
+  node dist/main.js"
