@@ -1,0 +1,8 @@
+{
+  "name": "fullstack-challenge",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "devDependencies": {
+    "turbo": "^2.5.8"
+  }
+}
