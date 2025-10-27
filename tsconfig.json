@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+     "paths": {
+      "@jungle/types/*": ["packages/types/*"]
+    },
+    "outDir": "./dist"
+  }
+}
